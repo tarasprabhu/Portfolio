@@ -46,11 +46,11 @@
 
     <h3>The Solution</h3>
     <p class="lede">
-      A custom 5-inch FPV frame, designed, modeled, FEA-validated, and
+      A custom 5-inch FPV frame, designed, modeled, analyzed, and
       CNC-manufactured, that natively houses both traditional analog FPV
       hardware and the DJI O4 Air Unit without 3D-printed adapters, while
       optimizing weight distribution for responsive freestyle flight and
-      validating structural durability through iterative design and finite
+      screening structural margins through iterative design and finite
       element analysis.
     </p>
 
@@ -58,7 +58,7 @@
     <ul class="spec-list">
       <li>Bare frame mass less than 150g, to preserve a powerful thrust-to-weight ratio</li>
       <li>Must natively house the DJI O4 Air Unit without additional 3D-printed mounting hardware</li>
-      <li>Must withstand high-G impacts typical of freestyle flight crashes (verified under a 20G structural load simulation)</li>
+      <li>Must withstand high-G impacts typical of freestyle flight crashes (screened with a 20G quasi-static load case)</li>
     </ul>
   </section>
 
@@ -106,18 +106,17 @@
       excess movement between the arm and the arm-lock. The redesign replaces
       it with a constrained rectangular pocket and a small fillet at the
       corner, tightening the fit while avoiding a sharp-corner stress riser.
-      This is the exact joint validated in the FEA study below.
+      This is the exact joint analyzed in the FEA study below.
     </div>
   </section>
 
-  <!-- ============ STRUCTURAL VALIDATION (FEA) ============ -->
+  <!-- ============ STRUCTURAL ANALYSIS (FEA) ============ -->
   <section id="fea">
-    <h2><span class="section-num">03</span>Structural Validation (FEA)</h2>
+    <h2><span class="section-num">03</span>Structural Analysis (FEA)</h2>
     <p class="lede">
       Isolated sub-study of the arm and arm-lock joint only, the specific
       feature redesigned above. Fixed at the arm's mounting holes; a 20G
-      equivalent crash load (6.8N) applied at the motor-mount face,
-      representing a hard but survivable freestyle impact.
+      quasi-static load (6.8N) applied at the motor-mount face.
     </p>
 
     <div class="media-grid cols-2">
@@ -134,13 +133,25 @@
     <div class="callout">
       <strong>Material:</strong> custom Hexcel AS4C (3K carbon/epoxy):
       E = 75,000 MPa, &nu; = 0.3, tensile strength 550 MPa.<br>
-      <strong>Result:</strong> Factor of Safety &asymp; 87. This margin is high
-      by design, driven by the manufacturability constraint of using standard
-      2/3/5mm stock thicknesses, not by pure weight optimization. A thinner
-      layup would have reduced this margin and saved some weight, but
-      required non-standard stock and added CNC cost, for no meaningful gain
-      given that the finished frame comes in at 117g, well under the 150g
-      ceiling.
+      <strong>Result:</strong> Factor of Safety &asymp; 87 against this load
+      case. The margin is large primarily because this is a modest screening
+      load rather than a limit case, and secondarily because plate thickness
+      was set by standard 2/3/5mm stock rather than by structural
+      optimization. A thinner layup would have saved some weight but required
+      non-standard stock and added CNC cost, for no meaningful gain given that
+      the finished frame comes in at 117g, well under the 150g ceiling.
+    </div>
+
+    <div class="callout">
+      <strong>Model limitations.</strong> This study treats the laminate as an
+      isotropic solid and evaluates it with von Mises, a ductile metal yield
+      criterion. Neither assumption holds for a woven carbon fiber layup; this
+      is not a composite failure prediction, but rather an initial screening
+      check on load path and stiffness. The main failure modes for this joint
+      are bearing at the fastener holes and delamination, neither of which a
+      static study resolves. The 6.8N load is a 20G quasi-static case on the
+      motor mass. Crash loading is a dynamic energy problem that a static
+      study cannot capture at any load magnitude.
     </div>
   </section>
 
@@ -204,11 +215,11 @@
       </thead>
       <tbody>
         <tr class="top-level"><td class="item-no">1</td><td>bottom_frame_module</td><td>Central Frame Subassembly</td><td>1</td></tr>
-        <tr class="hardware-row"><td></td><td>bottom_frame_v5</td><td>Bottom carbon fiber frame plate</td><td>1</td></tr>
+        <tr class="hardware-row"><td></td><td>bottom_frame_v6</td><td>Bottom carbon fiber frame plate</td><td>1</td></tr>
         <tr class="hardware-row"><td></td><td>camera_plate_v3</td><td>Camera side plates</td><td>2</td></tr>
         <tr class="hardware-row"><td></td><td>esc</td><td>Electronic speed controller</td><td>1</td></tr>
         <tr class="hardware-row"><td></td><td>fc</td><td>Flight controller</td><td>1</td></tr>
-        <tr class="hardware-row"><td></td><td>top_plate_v4</td><td>Top carbon fibre plate</td><td>1</td></tr>
+        <tr class="hardware-row"><td></td><td>top_plate_v4</td><td>Top carbon fiber plate</td><td>1</td></tr>
         <tr class="hardware-row"><td></td><td>m3_10mm</td><td>Socket head screw</td><td>20</td></tr>
         <tr class="hardware-row"><td></td><td>capacitor</td><td>Low-ESR capacitor</td><td>1</td></tr>
         <tr class="hardware-row"><td></td><td>battery_tpu_mount</td><td>3D printed battery mount</td><td>1</td></tr>
@@ -219,9 +230,9 @@
 
         <tr class="top-level"><td class="item-no">2</td><td>arm_module</td><td>Motor + arm assembly</td><td>4</td></tr>
 
-        <tr class="top-level"><td class="item-no">3</td><td>arm_slot_v6</td><td>Central carbon fibre arm lock</td><td>1</td></tr>
+        <tr class="top-level"><td class="item-no">3</td><td>arm_slot_v6</td><td>Central carbon fiber arm lock</td><td>1</td></tr>
 
-        <tr class="top-level"><td class="item-no">4</td><td>bottom_supporting_plate_v2</td><td>Lowest carbon fibre plate</td><td>1</td></tr>
+        <tr class="top-level"><td class="item-no">4</td><td>bottom_supporting_plate_v2</td><td>Lowest carbon fiber plate</td><td>1</td></tr>
         <tr class="hardware-row"><td></td><td>m3_10mm</td><td>Socket head screw</td><td>4</td></tr>
         <tr class="hardware-row"><td></td><td>m2_16mm</td><td>Socket head screw</td><td>2</td></tr>
         <tr class="hardware-row"><td></td><td>m3_30mm</td><td>Socket head screw</td><td>4</td></tr>
@@ -261,7 +272,7 @@
 
     <figure style="margin-top:28px;">
       <img src="../images/fpv-drone/final-build.jpg" alt="Fully assembled and flight-ready drone">
-      <figcaption>Fully assembled, flight-ready: the redesigned frame, native O4 mounting, and tested joint geometry all present in the final build.</figcaption>
+      <figcaption>Fully assembled, flight-ready: the redesigned frame, native O4 mounting, and flight-tested joint geometry all present in the final build.</figcaption>
     </figure>
   </section>
 
