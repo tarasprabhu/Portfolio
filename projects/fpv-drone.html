@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom FPV Drone Frame — Taras</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">Taras Prabhu</div>
+    <nav>
+      <a href="../index.html">&larr; All Projects</a>
+    </nav>
+  </div>
+</header>
+
+<section class="project-hero wrap">
+  <div class="kicker">Case Study</div>
+  <h1>Custom 5-Inch FPV Drone Frame</h1>
+
+  <figure class="hero-image">
+    <img src="../images/fpv-drone/hero-render.png" alt="Rendered assembly of the custom FPV drone frame">
+  </figure>
+  <figcaption>Full assembly render: custom carbon fiber frame, 6S electronics stack, T-Motor Velox 2207 1950KV motors, DJI O4 Air Unit.</figcaption>
+</section>
+
+<div class="case-study wrap">
+
+  <!-- ============ PROBLEM / SOLUTION / CONSTRAINTS ============ -->
+  <section id="problem">
+    <h2><span class="section-num">01</span>Problem, Solution &amp; Constraints</h2>
+
+    <h3>The Problem</h3>
+    <p class="lede">
+      Most FPV drone frames are designed exclusively around analog video hardware.
+      Accommodating a digital HD system like the DJI O4 Air Unit on these frames
+      typically requires bulky 3D-printed camera mounts, which shift the center
+      of gravity too far forward and compromise the weight distribution needed
+      for responsive freestyle flight. Frame designs also tend to trade
+      durability for weight savings, or vice versa, rather than optimizing for
+      both.
+    </p>
+
+    <h3>The Solution</h3>
+    <p class="lede">
+      A custom 5-inch FPV frame, designed, modeled, FEA-validated, and
+      CNC-manufactured, that natively houses both traditional analog FPV
+      hardware and the DJI O4 Air Unit without 3D-printed adapters, while
+      optimizing weight distribution for responsive freestyle flight and
+      validating structural durability through iterative design and finite
+      element analysis.
+    </p>
+
+    <h3>Constraints</h3>
+    <ul class="spec-list">
+      <li>Bare frame mass less than 150g, to preserve a powerful thrust-to-weight ratio</li>
+      <li>Must natively house the DJI O4 Air Unit without additional 3D-printed mounting hardware</li>
+      <li>Must withstand high-G impacts typical of freestyle flight crashes (verified under a 20G structural load simulation)</li>
+    </ul>
+  </section>
+
+  <!-- ============ EVOLUTION OF DESIGN ============ -->
+  <section id="evolution">
+    <h2><span class="section-num">02</span>Evolution of Design</h2>
+    <p class="lede">
+      Two parts carried the design through multiple iterations. The bottom
+      frame plate evolved to solve the DJI O4 packaging problem directly; the
+      arm-to-frame joint evolved to solve the durability problem.
+    </p>
+
+    <h3>Bottom Frame — Packaging &amp; Native O4 Mounting</h3>
+    <div class="compare">
+      <figure>
+        <span class="label before">v1</span>
+        <img src="../images/fpv-drone/bottom-frame-v1.png" alt="Bottom frame plate, version 1">
+      </figure>
+      <figure>
+        <span class="label after">v6</span>
+        <img src="../images/fpv-drone/bottom-frame-v6.png" alt="Bottom frame plate, version 6">
+      </figure>
+    </div>
+    <div class="callout">
+      <strong>What changed:</strong> the original layout wasted length and
+      spaced the camera-plate slots generically. The final version compacts
+      the footprint, repositions the camera-plate slots to fit the DJI O4 Air
+      Unit precisely, and adds mounting holes so the VTX mounts natively,
+      eliminating the 3D-printed adapter this project set out to remove.
+    </div>
+
+    <h3>Arm-Lock Joint — Motion &amp; Stress Control</h3>
+    <div class="compare">
+      <figure>
+        <span class="label before">v1</span>
+        <img src="../images/fpv-drone/arm-slot-v1-elliptical.png" alt="Arm and arm-lock joint, version 1, elliptical slot">
+      </figure>
+      <figure>
+        <span class="label after">v6</span>
+        <img src="../images/fpv-drone/arm-slot-v6-rectangular.png" alt="Arm and arm-lock joint, version 6, rectangular slot with fillet">
+      </figure>
+    </div>
+    <div class="callout">
+      <strong>What changed:</strong> the original elliptical slot allowed
+      excess movement between the arm and the arm-lock. The redesign replaces
+      it with a constrained rectangular pocket and a small fillet at the
+      corner, tightening the fit while avoiding a sharp-corner stress riser.
+      This is the exact joint validated in the FEA study below.
+    </div>
+  </section>
+
+  <!-- ============ STRUCTURAL VALIDATION (FEA) ============ -->
+  <section id="fea">
+    <h2><span class="section-num">03</span>Structural Validation (FEA)</h2>
+    <p class="lede">
+      Isolated sub-study of the arm and arm-lock joint only, the specific
+      feature redesigned above. Fixed at the arm's mounting holes; a 20G
+      equivalent crash load (6.8N) applied at the motor-mount face,
+      representing a hard but survivable freestyle impact.
+    </p>
+
+    <div class="media-grid cols-2">
+      <figure>
+        <img src="../images/fpv-drone/fea-von-mises.png" alt="Von Mises stress plot on the arm and arm-lock joint">
+        <figcaption><strong>Von Mises stress.</strong> Max stress 6.3 MPa, located at the fastener hole furthest from the arm-to-slot joint.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/fpv-drone/fea-displacement.png" alt="Resultant displacement plot on the arm and arm-lock joint">
+        <figcaption><strong>Resultant displacement (URES).</strong> Deflection concentrated at the motor-mount end, as expected for a cantilevered arm.</figcaption>
+      </figure>
+    </div>
+
+    <div class="callout">
+      <strong>Material:</strong> custom Hexcel AS4C (3K carbon/epoxy):
+      E = 75,000 MPa, &nu; = 0.3, tensile strength 550 MPa.<br>
+      <strong>Result:</strong> Factor of Safety &asymp; 87. This margin is high
+      by design, driven by the manufacturability constraint of using standard
+      2/3/5mm stock thicknesses, not by pure weight optimization. A thinner
+      layup would have reduced this margin and saved some weight, but
+      required non-standard stock and added CNC cost, for no meaningful gain
+      given that the finished frame comes in at 117g, well under the 150g
+      ceiling.
+    </div>
+  </section>
+
+  <!-- ============ MASS PROPERTIES & DFM ============ -->
+  <section id="mass-dfm">
+    <h2><span class="section-num">04</span>Mass Properties &amp; DFM</h2>
+    <p class="lede">
+      The principal mass moments of inertia below are what the weight
+      distribution claim in the Solution is actually built on; they directly
+      determine roll/pitch/yaw control authority and PID-tuning behavior.
+      These values were used as an initial gain input for pitch and roll,
+      since both are actuated similarly, and as a general guide for
+      balancing PID response across all three axes, including yaw, which is
+      actuated differently and tuned by feel.
+    </p>
+
+    <div class="stat-row">
+      <div class="stat">
+        <div class="value">0.00160</div>
+        <div class="unit">kg&middot;m&sup2;</div>
+        <div class="label">I<sub>xx</sub> — Roll</div>
+      </div>
+      <div class="stat">
+        <div class="value">0.00193</div>
+        <div class="unit">kg&middot;m&sup2;</div>
+        <div class="label">I<sub>yy</sub> — Pitch</div>
+      </div>
+      <div class="stat">
+        <div class="value">0.00292</div>
+        <div class="unit">kg&middot;m&sup2;</div>
+        <div class="label">I<sub>zz</sub> — Yaw</div>
+      </div>
+    </div>
+
+    <h3>Design for Manufacturing (DFM)</h3>
+    <div class="callout">
+      All frame plates (shown in Section 02) are restricted to standard
+      commercial carbon fiber stock thicknesses (2mm, 3mm, and 5mm) to avoid
+      custom milling costs at the machine shop. Internal corners use dogbone
+      fillets sized to the CNC router's bit diameter, preventing
+      over-machining and eliminating the sharp-corner stress concentrations a
+      router can't cut cleanly anyway. Interlocking arm slots carry
+      deliberate micro-clearances for a toolless, hand-assembled fit.
+    </div>
+  </section>
+
+  <!-- ============ ASSEMBLY & BOM ============ -->
+  <section id="assembly">
+    <h2><span class="section-num">05</span>Assembly &amp; Bill of Materials</h2>
+
+    <figure>
+      <img src="../images/fpv-drone/exploded-view.png" alt="Exploded view of the drone assembly with numbered callouts">
+      <figcaption>1 &mdash; Frame Module &middot; 2 &mdash; Arm Module (&times;4) &middot; 3 &mdash; Arm-Lock &middot; 4 &mdash; Supporting Plate</figcaption>
+    </figure>
+
+    <h3>Bill of Materials</h3>
+    <div style="overflow-x:auto;">
+    <table class="bom-table">
+      <thead>
+        <tr><th class="item-no">#</th><th>Part</th><th>Description</th><th>Qty</th></tr>
+      </thead>
+      <tbody>
+        <tr class="top-level"><td class="item-no">1</td><td>bottom_frame_module</td><td>Central Frame Subassembly</td><td>1</td></tr>
+        <tr class="hardware-row"><td></td><td>bottom_frame_v5</td><td>Bottom carbon fiber frame plate</td><td>1</td></tr>
+        <tr class="hardware-row"><td></td><td>camera_plate_v3</td><td>Camera side plates</td><td>2</td></tr>
+        <tr class="hardware-row"><td></td><td>esc</td><td>Electronic speed controller</td><td>1</td></tr>
+        <tr class="hardware-row"><td></td><td>fc</td><td>Flight controller</td><td>1</td></tr>
+        <tr class="hardware-row"><td></td><td>top_plate_v4</td><td>Top carbon fibre plate</td><td>1</td></tr>
+        <tr class="hardware-row"><td></td><td>m3_10mm</td><td>Socket head screw</td><td>20</td></tr>
+        <tr class="hardware-row"><td></td><td>capacitor</td><td>Low-ESR capacitor</td><td>1</td></tr>
+        <tr class="hardware-row"><td></td><td>battery_tpu_mount</td><td>3D printed battery mount</td><td>1</td></tr>
+        <tr class="hardware-row"><td></td><td>6s_battery</td><td>6S 1350mAh LiPo</td><td>1</td></tr>
+        <tr class="hardware-row"><td></td><td>m3_grommets</td><td>Rubber dampening grommet</td><td>8</td></tr>
+        <tr class="hardware-row"><td></td><td>m2_grommets</td><td>Rubber dampening grommet</td><td>4</td></tr>
+        <tr class="hardware-row"><td></td><td>DJI O4 Air Unit</td><td>Digital HD video system</td><td>1</td></tr>
+
+        <tr class="top-level"><td class="item-no">2</td><td>arm_module</td><td>Motor + arm assembly</td><td>4</td></tr>
+
+        <tr class="top-level"><td class="item-no">3</td><td>arm_slot_v6</td><td>Central carbon fibre arm lock</td><td>1</td></tr>
+
+        <tr class="top-level"><td class="item-no">4</td><td>bottom_supporting_plate_v2</td><td>Lowest carbon fibre plate</td><td>1</td></tr>
+        <tr class="hardware-row"><td></td><td>m3_10mm</td><td>Socket head screw</td><td>4</td></tr>
+        <tr class="hardware-row"><td></td><td>m2_16mm</td><td>Socket head screw</td><td>2</td></tr>
+        <tr class="hardware-row"><td></td><td>m3_30mm</td><td>Socket head screw</td><td>4</td></tr>
+        <tr class="hardware-row"><td></td><td>m2_nut</td><td>Hex nut</td><td>8</td></tr>
+        <tr class="hardware-row"><td></td><td>m2_6mm</td><td>Socket head screw</td><td>4</td></tr>
+        <tr class="hardware-row"><td></td><td>m2_10mm</td><td>Socket head screw</td><td>4</td></tr>
+        <tr class="hardware-row"><td></td><td>25mm_standoff</td><td>Aluminum standoff</td><td>8</td></tr>
+        <tr class="hardware-row"><td></td><td>m3_nut</td><td>Hex nut</td><td>12</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- ============ PHYSICAL REALITY & SYSTEMS INTEGRATION ============ -->
+  <section id="build">
+    <h2><span class="section-num">06</span>Physical Reality &amp; Systems Integration</h2>
+    <p class="lede">
+      Taking the project from digital design to a real, flying machine:
+      CNC-manufactured carbon plates, soldered electronics, and
+      Betaflight/ESC configuration.
+    </p>
+
+    <figure>
+      <img src="../images/fpv-drone/build-progress-1.jpg" alt="Partially assembled quad on workbench">
+      <figcaption>Frame and motors assembled, stack wired ahead of final power connections.</figcaption>
+    </figure>
+
+    <div class="callout">
+      <strong>Electronics packaging:</strong> a Rubycon low-ESR 470&micro;F
+      35V capacitor was soldered to the ESC to suppress voltage spikes from
+      the 6S pack under hard throttle punches.<br>
+      <strong>RF &amp; flight software:</strong> RadioMaster TX16S Mk3
+      running EdgeTX and ExpressLRS; PID and filter parameters in Betaflight
+      were tuned to match the airframe's measured mass moments of inertia
+      (Section 04).
+    </div>
+
+    <figure style="margin-top:28px;">
+      <img src="../images/fpv-drone/final-build.jpg" alt="Fully assembled and flight-ready drone">
+      <figcaption>Fully assembled, flight-ready: the redesigned frame, native O4 mounting, and tested joint geometry all present in the final build.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ FLIGHT VALIDATION ============ -->
+  <section id="flight">
+    <h2><span class="section-num">07</span>Flight Validation</h2>
+    <p class="lede">
+      Ground-view footage of the first test flight.
+    </p>
+    <figure>
+      <video controls preload="metadata" src="../images/fpv-drone/test-flight.mp4"></video>
+    </figure>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    &copy; <span id="year"></span> Taras Prabhu &middot;
+    <a href="mailto:tarasprabhu2007@gmail.com">tarasprabhu2007@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taras Prabhu — Portfolio</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">Taras Prabhu</div>
+    <nav>
+      <a href="#projects">Projects</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <!-- EDIT ME: your name -->
+    <h1>Taras Prabhu</h1>
+    <!-- EDIT ME: a one-line subtitle, e.g. your program/school -->
+    <p class="subtitle">Mechanical Engineering Student</p>
+
+    <!-- EDIT ME: your introduction -->
+    <p class="intro">
+      Mechanical Engineering student at McMaster University, interested in
+      aerospace structures and UAV systems. I like taking projects from CAD
+      through simulation to a real, working result. Currently looking for
+      co-op opportunities in the aerospace industry.
+    </p>
+  </div>
+</section>
+
+<section id="projects" class="wrap">
+  <div class="project-grid">
+
+    <!--
+      One project card = one <a class="project-card">.
+      To add a new project: copy this whole <a> block, point its
+      href at a new file in /projects/, swap the thumbnail image,
+      and update the title/description/tags.
+    -->
+    <a class="project-card" href="projects/fpv-drone.html">
+      <div class="thumb">
+        <img src="images/fpv-drone/hero-render.png" alt="Custom FPV drone frame render">
+      </div>
+      <div class="card-body">
+        <h3>Custom FPV Drone Frame</h3>
+        <p>5-inch carbon fiber frame designed, simulated, and manufactured to natively house a DJI O4 Air Unit.</p>
+        <div class="tags">
+          <span class="tag">SolidWorks</span>
+          <span class="tag">FEA</span>
+          <span class="tag">DFM / CNC</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    &copy; <span id="year"></span> Taras Prabhu &middot;
+    <a href="mailto:tarasprabhu2007@gmail.com">tarasprabhu2007@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
