@@ -29,6 +29,22 @@
 
 <div class="case-study wrap">
 
+  <!-- ============ SPEC SUMMARY ============ -->
+  <div class="spec-strip" style="overflow-x:auto;">
+    <table class="data-table">
+      <tbody>
+        <tr><th>Class</th><td>5-inch freestyle quadcopter</td></tr>
+        <tr><th>Bare frame mass</th><td>117 g (measured)</td></tr>
+        <tr><th>All-up weight</th><td>610 g measured (CAD: 560 g, +9%)</td></tr>
+        <tr><th>Frame</th><td>2/3/5 mm CNC-cut T300 woven carbon fiber (3K)</td></tr>
+        <tr><th>Motors</th><td>T-Motor Velox 2207, 1950KV</td></tr>
+        <tr><th>Battery</th><td>6S 1350 mAh LiPo</td></tr>
+        <tr><th>Video</th><td>DJI O4 Air Unit</td></tr>
+        <tr><th>Control link</th><td>ExpressLRS, RadioMaster TX16S Mk3 (EdgeTX)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <!-- ============ PROBLEM / SOLUTION / CONSTRAINTS ============ -->
   <section id="problem">
     <h2><span class="section-num">01</span>Problem, Solution &amp; Constraints</h2>
@@ -47,9 +63,10 @@
     <p class="lede">
       A custom 5-inch FPV frame, designed, modeled, analyzed, and
       CNC-manufactured, that houses both analog FPV hardware and the DJI O4
-      Air Unit natively, with no 3D-printed adapters. Weight distribution was
-      tuned for responsive freestyle flight, and structural margins were
-      screened through iterative design and finite element analysis.
+      Air Unit natively, with no 3D-printed adapters. Mounting the O4 directly
+      to the frame keeps its mass low and centered in the stack. Structural
+      margins were screened through iterative design and finite element
+      analysis.
     </p>
 
     <h3>Constraints</h3>
@@ -127,8 +144,10 @@
     </figure>
 
     <div class="callout">
-      <strong>Material:</strong> custom Hexcel AS4C (3K carbon/epoxy):
-      E = 75,000 MPa, &nu; = 0.3, tensile strength 550 MPa.<br>
+      <strong>Material:</strong> the frame is cut from T300 woven carbon
+      fiber. The FEA used Hexcel AS4C properties (E = 75,000 MPa,
+      &nu; = 0.3, tensile strength 550 MPa), the closest carbon fiber
+      available in the SolidWorks material library.<br>
       <strong>Result:</strong> Factor of Safety &asymp; 87 against this load
       case. Within this model, peak stress reaches the 550 MPa tensile
       strength at about 594N, roughly 87&times; the applied load; that is
@@ -146,7 +165,10 @@
       treat this as an initial screening check on load path and stiffness. The
       main failure modes for this joint
       are bearing at the fastener holes and delamination, neither of which a
-      static study resolves. The 6.8N load is a 20G quasi-static case on the
+      static study resolves. The fixed-geometry constraint at the mounting
+      holes assumes an infinitely stiff joint with no bolt preload or contact,
+      so peak stress at a fastener hole is sensitive to that assumption. The
+      6.8N load is a 20G quasi-static case on the
       motor mass. Crash loading is a dynamic energy problem that a static
       study cannot capture at any load magnitude.
     </div>
@@ -156,9 +178,9 @@
   <section id="mass-dfm">
     <h2><span class="section-num">04</span>Mass Properties &amp; DFM</h2>
     <p class="lede">
-      The principal mass moments of inertia below back the weight
-      distribution claim in the Solution. They determine roll/pitch/yaw
-      control authority and PID-tuning behavior.
+      The principal mass moments of inertia describe how the airframe's mass
+      sits about each rotation axis. They determine roll/pitch/yaw control
+      authority and PID-tuning behavior.
       These values were used as an initial gain input for pitch and roll,
       since both are actuated similarly, and as a general guide for
       balancing PID response across all three axes, including yaw, which is
@@ -261,9 +283,8 @@
       35V capacitor was soldered to the ESC to suppress voltage spikes from
       the 6S pack under hard throttle punches.<br>
       <strong>RF &amp; flight software:</strong> RadioMaster TX16S Mk3
-      running EdgeTX and ExpressLRS; PID and filter parameters in Betaflight
-      were tuned to match the airframe's measured mass moments of inertia
-      (Section 04).
+      running EdgeTX and ExpressLRS; PID gains in Betaflight were set using
+      the airframe's computed mass moments of inertia (Section 04).
     </div>
 
     <figure style="margin-top:28px;">
@@ -281,6 +302,47 @@
     <figure>
       <video controls preload="metadata" poster="../images/fpv-drone/test-flight-poster.jpg" src="../images/fpv-drone/test-flight.mp4"></video>
     </figure>
+  </section>
+
+  <!-- ============ RESULTS ============ -->
+  <section id="results">
+    <h2><span class="section-num">08</span>Results</h2>
+    <p class="lede">
+      Each constraint from Section 01, scored against what the build actually
+      achieved.
+    </p>
+    <div style="overflow-x:auto;">
+      <table class="data-table">
+        <thead>
+          <tr><th>Constraint</th><th>Target</th><th>Outcome</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bare frame mass</td>
+            <td>Under 150 g</td>
+            <td>117 g, measured on the manufactured frame</td>
+          </tr>
+          <tr>
+            <td>Native O4 mounting</td>
+            <td>No 3D-printed mounting hardware</td>
+            <td>Met. Camera plates and VTX mounting holes are cut into the frame</td>
+          </tr>
+          <tr>
+            <td>Impact resistance</td>
+            <td>Withstand high-G freestyle crashes</td>
+            <td>Screened under a 20G quasi-static case only. Crash survival is not demonstrated by this analysis</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>Prediction vs. reality:</strong> CAD predicted 560 g all-up
+      against 610 g measured, about 9% light. The model used simplified block
+      geometry for the electronics, motors, and fasteners, and carried no
+      wiring, solder, heat shrink, or zip ties, which is where most of the
+      difference sits.
+    </div>
   </section>
 
 </div>
