@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High-Performance Ballista — Taras Prabhu</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">Taras Prabhu</div>
+    <nav>
+      <a href="../index.html">&larr; All Projects</a>
+    </nav>
+  </div>
+</header>
+
+<section class="project-hero wrap">
+  <div class="kicker">Project</div>
+  <h1>High-Performance Ballista</h1>
+
+  <p class="summary">
+    A wooden torsion ballista built for a high school physics competition
+    against roughly 30 other teams. Kinematics predicted about 60 m of range.
+    It threw 35 m, and the gap turned out to be the most useful part of the
+    project. Placed 1st.
+  </p>
+
+  <figure class="hero-image">
+    <img src="../images/ballista/ballista-side.jpg" alt="Completed wooden ballista, side view">
+  </figure>
+  <figcaption>Completed build. Wooden frame, torsion bundle drive, steel plates reinforcing the base joints.</figcaption>
+</section>
+
+<div class="case-study wrap">
+
+  <!-- ============ SPEC SUMMARY ============ -->
+  <div class="spec-strip" style="overflow-x:auto;">
+    <table class="data-table">
+      <tbody>
+        <tr><th>Competition</th><td>High school physics, ~30 teams of 2&ndash;3</td></tr>
+        <tr><th>Result</th><td>1st place</td></tr>
+        <tr><th>Mass</th><td>6 kg (10 kg limit)</td></tr>
+        <tr><th>Envelope</th><td>Within 50 &times; 50 &times; 60 cm</td></tr>
+        <tr><th>Mechanism</th><td>Torsion bundle, wooden frame</td></tr>
+        <tr><th>Projectile</th><td>Golf ball</td></tr>
+        <tr><th>Range</th><td>35 m measured (60 m predicted)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ DESIGN ============ -->
+  <section id="design">
+    <h2><span class="section-num">01</span>Design &amp; Constraints</h2>
+    <p class="lede">
+      The competition set hard limits on size, mass, and manufacturing method.
+      Everything had to be built by hand.
+    </p>
+
+    <ul class="spec-list">
+      <li>No CNC manufacturing</li>
+      <li>Under 10 kg, built at 6 kg</li>
+      <li>Within 50 &times; 50 &times; 60 cm</li>
+      <li>Golf ball projectile</li>
+    </ul>
+
+    <figure style="margin-top:24px;">
+      <img src="../images/ballista/ballista-iso.jpg" alt="Ballista viewed from the rear quarter, showing both torsion bundles">
+      <figcaption>Rear quarter view. Both torsion bundles are visible either side of the trough, with the ratchet at the far end for drawing back the sled.</figcaption>
+    </figure>
+
+    <div class="callout">
+      A torsion bundle stores the energy: twisted cord loaded by rotating the
+      arms back against it, released to drive the sled forward along the
+      trough. I designed the mechanism and geometry, two teammates cut parts,
+      and I led the assembly.
+    </div>
+  </section>
+
+  <!-- ============ DRAWINGS ============ -->
+  <section id="drawings">
+    <h2><span class="section-num">02</span>Drawings</h2>
+    <p class="lede">
+      Hand-drawn layouts used to cut and assemble the frame. Top and side
+      views, dimensioned in centimetres.
+    </p>
+
+    <figure>
+      <img src="../images/ballista/drawing-side.jpg" alt="Hand-drawn dimensioned side view of the ballista">
+      <figcaption><strong>Side view.</strong> Overall envelope, arm length, brace angles, and base geometry.</figcaption>
+    </figure>
+
+    <figure style="margin-top:22px;">
+      <img src="../images/ballista/drawing-top.jpg" alt="Hand-drawn dimensioned top view of the ballista">
+      <figcaption><strong>Top view.</strong> Trough width, sled travel, torsion bundle spacing, and arm splay.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ PREDICTION VS RESULT ============ -->
+  <section id="result">
+    <h2><span class="section-num">03</span>Prediction vs. Result</h2>
+
+    <p class="lede">
+      The range prediction came from kinematics, treating the launch as
+      lossless with all stored energy going into the ball. That gave about
+      60 m. The ballista threw 35 m, tape-measured at the competition.
+    </p>
+
+    <div class="callout">
+      <strong>Where the energy went.</strong> At the end of the stroke the
+      arms struck the frame hard enough to crack audibly. That is energy going
+      into the structure rather than the projectile, and the lossless model had
+      no way to account for it. A launch model that matched the real machine
+      would need to carry the energy left in the arms at release, plus friction
+      in the trough and losses in the cord.
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    &copy; <span id="year"></span> Taras Prabhu &middot;
+    <a href="mailto:tarasprabhu2007@gmail.com">tarasprabhu2007@gmail.com</a>
+  </div>
+</footer>
+
+<!-- Click any figure to enlarge it -->
+<div id="lightbox" hidden><img alt=""></div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function () {
+    var box = document.getElementById('lightbox');
+    var full = box.querySelector('img');
+
+    function close() {
+      box.hidden = true;
+      full.removeAttribute('src');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.case-study figure img, .hero-image img').forEach(function (thumb) {
+      thumb.addEventListener('click', function () {
+        full.src = thumb.currentSrc || thumb.src;
+        full.alt = thumb.alt;
+        box.hidden = false;
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    box.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !box.hidden) close();
+    });
+  })();
+</script>
+
+</body>
+</html>
