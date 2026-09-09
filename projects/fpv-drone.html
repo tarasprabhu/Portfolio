@@ -24,8 +24,8 @@
   <p class="summary">
     A custom 5-inch FPV frame built to carry the DJI O4 Air Unit natively,
     without the 3D-printed adapters most frames need for it. The project ran
-    from first CAD through FEA screening, DFM for CNC routing, manufacture,
-    assembly, and a first flight. The finished frame weighs 117 g against a
+    from first CAD through FEA screening, DFM for CNC routing, manufacturing,
+    assembly, and successful flight. The finished frame weighs 117 g against a
     150 g target.
   </p>
 
@@ -48,7 +48,7 @@
         <tr><th>Motors</th><td>T-Motor Velox 2207, 1950KV</td></tr>
         <tr><th>Battery</th><td>6S 1350 mAh LiPo</td></tr>
         <tr><th>Video</th><td>DJI O4 Air Unit</td></tr>
-        <tr><th>Control link</th><td>ExpressLRS, RadioMaster TX16S Mk3 (EdgeTX)</td></tr>
+        <tr><th>Control link</th><td>ExpressLRS, RadioMaster TX16S Mk3</td></tr>
       </tbody>
     </table>
   </div>
@@ -63,8 +63,9 @@
       Accommodating a digital HD system like the DJI O4 Air Unit on these frames
       typically requires bulky 3D-printed camera mounts, which shift the center
       of gravity too far forward and compromise the weight distribution needed
-      for responsive freestyle flight. Most frame designs also treat
-      durability and weight as a trade-off.
+      for responsive freestyle flight. Frame designs also tend to trade 
+      durability for weight savings, or vice versa, rather than optimizing 
+      for both.
     </p>
 
     <h3>The Solution</h3>
@@ -72,9 +73,8 @@
       A custom 5-inch FPV frame, designed, modeled, analyzed, and
       CNC-manufactured, that houses both analog FPV hardware and the DJI O4
       Air Unit natively, with no 3D-printed adapters. Mounting the O4 directly
-      to the frame keeps its mass low and centered in the stack. Structural
-      margins were screened through iterative design and finite element
-      analysis.
+      to the frame keeps its mass low and centered in the stack. The arm-to-frame 
+      joint was redesigned and checked with a finite element study.
     </p>
 
     <h3>Constraints</h3>
@@ -90,7 +90,7 @@
     <h2><span class="section-num">02</span>Evolution of Design</h2>
     <p class="lede">
       Two parts went through the most iteration. The bottom
-      frame plate evolved to solve the DJI O4 packaging problem directly; the
+      frame plate evolved to solve the DJI O4 packaging problem; the
       arm-to-frame joint evolved to solve the durability problem.
     </p>
 
@@ -109,7 +109,7 @@
       <strong>What changed:</strong> the original layout wasted length and
       spaced the camera-plate slots generically. The final version compacts
       the footprint, repositions the camera-plate slots to fit the DJI O4 Air
-      Unit precisely, and adds mounting holes so the VTX mounts natively,
+      Unit, and adds mounting holes so the VTX mounts natively,
       eliminating the 3D-printed adapter.
     </div>
 
@@ -128,7 +128,7 @@
       <strong>What changed:</strong> the original elliptical slot allowed
       excess movement between the arm and the arm-lock. The redesign replaces
       it with a constrained rectangular pocket and a small fillet at the
-      corner, tightening the fit while avoiding a sharp-corner stress riser.
+      corner, tightening the fit while avoiding a sharp corner stress riser.
       This joint is analyzed in the FEA study below.
     </div>
   </section>
@@ -137,7 +137,7 @@
   <section id="fea">
     <h2><span class="section-num">03</span>Structural Analysis (FEA)</h2>
     <p class="lede">
-      Isolated sub-study of the arm and arm-lock joint only, the specific
+      Isolated study of the arm and arm-lock joint only, the specific
       feature redesigned above. Fixed at the arm's mounting holes; a 20G
       quasi-static load (6.8N) applied at the motor-mount face.
     </p>
@@ -148,7 +148,7 @@
     </figure>
     <figure style="margin-top:22px;">
       <img src="../images/fpv-drone/fea-displacement.png" alt="Resultant displacement plot on the arm and arm-lock joint">
-      <figcaption><strong>Resultant displacement (URES).</strong> Deflection concentrated at the motor-mount end, as expected for a cantilevered arm.</figcaption>
+      <figcaption><strong>Resultant displacement (URES).</strong> Peak deflection of 0.048 mm concentrated at the motor-mount end, as expected for a cantilevered arm.</figcaption>
     </figure>
 
     <div class="callout">
@@ -158,8 +158,7 @@
       available in the SolidWorks material library.<br>
       <strong>Result:</strong> Factor of Safety &asymp; 87 against this load
       case. Within this model, peak stress reaches the 550 MPa tensile
-      strength at about 594N, roughly 87&times; the applied load; that is
-      linear scaling and carries the caveats noted below. Two things drive the
+      strength at about 594N, roughly 87&times; the applied load. Two things drive the
       margin: the load case is small, and plate thickness came from the
       standard 2/3/5mm stock the shop cuts. A thinner layup would have saved
       weight but required non-standard stock and added CNC cost, for little
@@ -188,8 +187,8 @@
     <p class="lede">
       The principal mass moments of inertia describe how the airframe's mass
       sits about each rotation axis. They determine roll/pitch/yaw control
-      authority and PID-tuning behavior.
-      These values were used as an initial gain input for pitch and roll,
+      authority and PID tuning behavior.
+      The ratios between these values were used as an initial gain input for pitch and roll,
       since both are actuated similarly, and as a general guide for
       balancing PID response across all three axes, including yaw, which is
       actuated differently and tuned by feel.
@@ -218,9 +217,11 @@
       All frame plates (shown in Section 02) are restricted to standard
       commercial carbon fiber stock thicknesses (2mm, 3mm, and 5mm) to avoid
       custom milling costs at the machine shop. Internal corners use dogbone
-      fillets sized to the CNC router's bit diameter, preventing
-      over-machining and eliminating the sharp-corner stress concentrations a
-      router can't cut cleanly. Interlocking arm slots have micro-clearances
+      fillets sized to the CNC router's bit diameter. A round tool can't cut a sharp 
+      internal corner, and without relief it leaves an uncut radius that stops 
+      mating parts from seating. The dogbone overcuts that corner so the joint 
+      closes, accepting a small stress concentration at the relief in exchange. 
+      Interlocking arm slots have micro-clearances
       sized for a toolless, hand-assembled fit.
     </div>
   </section>
@@ -291,8 +292,8 @@
       35V capacitor was soldered to the ESC to suppress voltage spikes from
       the 6S pack under hard throttle punches.<br>
       <strong>RF &amp; flight software:</strong> RadioMaster TX16S Mk3
-      running EdgeTX and ExpressLRS; PID gains in Betaflight were set using
-      the airframe's computed mass moments of inertia (Section 04).
+      running EdgeTX and ExpressLRS; PID gains in Betaflight were initially 
+      set using the airframe's moment of inertia ratios (Section 04).
     </div>
 
     <figure style="margin-top:28px;">
