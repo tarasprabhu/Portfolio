@@ -3,14 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custom FPV Drone Frame — Taras</title>
+<title>Custom 5-Inch FPV Drone Frame — Taras Prabhu</title>
+<meta name="description" content="A carbon fiber FPV frame that mounts a DJI O4 Air Unit natively. 117 g bare against a 150 g target, taken from CAD through FEA, DFM, manufacture and first flight.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Custom 5-Inch FPV Drone Frame — Taras Prabhu">
+<meta property="og:description" content="A carbon fiber FPV frame that mounts a DJI O4 Air Unit natively. 117 g bare against a 150 g target, taken from CAD through FEA, DFM, manufacture and first flight.">
+<meta property="og:image" content="https://tarasprabhu.github.io/Portfolio/images/fpv-drone/hero-render.jpg">
+<meta property="og:url" content="https://tarasprabhu.github.io/Portfolio/projects/fpv-drone.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314161a'/%3E%3Ctext x='32' y='44' font-family='Helvetica,Arial' font-size='34' font-weight='bold' fill='%236f92c9' text-anchor='middle'%3ETP%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 <header class="site-header">
   <div class="wrap">
-    <div class="brand">Taras Prabhu</div>
+    <a class="brand" href="../index.html">Taras Prabhu</a>
     <nav>
       <a href="../index.html">&larr; All Projects</a>
     </nav>
@@ -63,8 +71,8 @@
       Accommodating a digital HD system like the DJI O4 Air Unit on these frames
       typically requires bulky 3D-printed camera mounts, which shift the center
       of gravity too far forward and compromise the weight distribution needed
-      for responsive freestyle flight. Frame designs also tend to trade 
-      durability for weight savings, or vice versa, rather than optimizing 
+      for responsive freestyle flight. Frame designs also tend to trade
+      durability for weight savings, or vice versa, rather than optimizing
       for both.
     </p>
 
@@ -73,7 +81,7 @@
       A custom 5-inch FPV frame, designed, modeled, analyzed, and
       CNC-manufactured, that houses both analog FPV hardware and the DJI O4
       Air Unit natively, with no 3D-printed adapters. Mounting the O4 directly
-      to the frame keeps its mass low and centered in the stack. The arm-to-frame 
+      to the frame keeps its mass low and centered in the stack. The arm-to-frame
       joint was redesigned and checked with a finite element study.
     </p>
 
@@ -98,11 +106,11 @@
     <div class="compare">
       <figure>
         <span class="label before">v1</span>
-        <img src="../images/fpv-drone/bottom-frame-v1.png" alt="Bottom frame plate, version 1">
+        <img src="../images/fpv-drone/bottom-frame-v1.png" alt="Bottom frame plate, version 1" loading="lazy">
       </figure>
       <figure>
         <span class="label after">v6</span>
-        <img src="../images/fpv-drone/bottom-frame-v6.png" alt="Bottom frame plate, version 6">
+        <img src="../images/fpv-drone/bottom-frame-v6.png" alt="Bottom frame plate, version 6" loading="lazy">
       </figure>
     </div>
     <div class="callout">
@@ -117,11 +125,11 @@
     <div class="compare">
       <figure>
         <span class="label before">v1</span>
-        <img src="../images/fpv-drone/arm-slot-v1-elliptical.png" alt="Arm and arm-lock joint, version 1, elliptical slot">
+        <img src="../images/fpv-drone/arm-slot-v1-elliptical.png" alt="Arm and arm-lock joint, version 1, elliptical slot" loading="lazy">
       </figure>
       <figure>
         <span class="label after">v6</span>
-        <img src="../images/fpv-drone/arm-slot-v6-rectangular.png" alt="Arm and arm-lock joint, version 6, rectangular slot with fillet">
+        <img src="../images/fpv-drone/arm-slot-v6-rectangular.png" alt="Arm and arm-lock joint, version 6, rectangular slot with fillet" loading="lazy">
       </figure>
     </div>
     <div class="callout">
@@ -143,11 +151,11 @@
     </p>
 
     <figure>
-      <img src="../images/fpv-drone/fea-von-mises.png" alt="Von Mises stress plot on the arm and arm-lock joint">
+      <img src="../images/fpv-drone/fea-von-mises.png" alt="Von Mises stress plot on the arm and arm-lock joint" loading="lazy">
       <figcaption><strong>Von Mises stress.</strong> Max stress 6.3 MPa, located at the fastener hole furthest from the arm-to-slot joint.</figcaption>
     </figure>
     <figure style="margin-top:22px;">
-      <img src="../images/fpv-drone/fea-displacement.png" alt="Resultant displacement plot on the arm and arm-lock joint">
+      <img src="../images/fpv-drone/fea-displacement.png" alt="Resultant displacement plot on the arm and arm-lock joint" loading="lazy">
       <figcaption><strong>Resultant displacement (URES).</strong> Peak deflection of 0.048 mm concentrated at the motor-mount end, as expected for a cantilevered arm.</figcaption>
     </figure>
 
@@ -185,7 +193,7 @@
   <section id="mass-dfm">
     <h2><span class="section-num">04</span>Mass Properties &amp; DFM</h2>
     <p class="lede">
-      The principal mass moments of inertia describe how the airframe's mass
+      The principal mass moments of inertia describe how the aircraft's mass
       sits about each rotation axis. They determine roll/pitch/yaw control
       authority and PID tuning behavior.
       The ratios between these values were used as an initial gain input for pitch and roll,
@@ -217,10 +225,10 @@
       All frame plates (shown in Section 02) are restricted to standard
       commercial carbon fiber stock thicknesses (2mm, 3mm, and 5mm) to avoid
       custom milling costs at the machine shop. Internal corners use dogbone
-      fillets sized to the CNC router's bit diameter. A round tool can't cut a sharp 
-      internal corner, and without relief it leaves an uncut radius that stops 
-      mating parts from seating. The dogbone overcuts that corner so the joint 
-      closes, accepting a small stress concentration at the relief in exchange. 
+      fillets sized to the CNC router's bit diameter. A round tool can't cut a sharp
+      internal corner, and without relief it leaves an uncut radius that stops
+      mating parts from seating. The dogbone overcuts that corner so the joint
+      closes, accepting a small stress concentration at the relief in exchange.
       Interlocking arm slots have micro-clearances
       sized for a toolless, hand-assembled fit.
     </div>
@@ -231,7 +239,7 @@
     <h2><span class="section-num">05</span>Assembly &amp; Bill of Materials</h2>
 
     <figure>
-      <img src="../images/fpv-drone/exploded-view.jpg" alt="Exploded view of the drone assembly with numbered callouts">
+      <img src="../images/fpv-drone/exploded-view.jpg" alt="Exploded view of the drone assembly with numbered callouts" loading="lazy">
       <figcaption>1 &mdash; Frame Module &middot; 2 &mdash; Arm Module (&times;4) &middot; 3 &mdash; Arm-Lock &middot; 4 &mdash; Supporting Plate</figcaption>
     </figure>
 
@@ -283,7 +291,7 @@
     </p>
 
     <figure>
-      <img src="../images/fpv-drone/build-progress-1.jpg" alt="Partially assembled quad on workbench">
+      <img src="../images/fpv-drone/build-progress-1.jpg" alt="Partially assembled quad on workbench" loading="lazy">
       <figcaption>Frame and motors assembled, stack wired ahead of final power connections.</figcaption>
     </figure>
 
@@ -292,12 +300,12 @@
       35V capacitor was soldered to the ESC to suppress voltage spikes from
       the 6S pack under hard throttle punches.<br>
       <strong>RF &amp; flight software:</strong> RadioMaster TX16S Mk3
-      running EdgeTX and ExpressLRS; PID gains in Betaflight were initially 
-      set using the airframe's moment of inertia ratios (Section 04).
+      running EdgeTX and ExpressLRS; PID gains in Betaflight were initially
+      set using the aircraft's moment of inertia ratios (Section 04).
     </div>
 
     <figure style="margin-top:28px;">
-      <img src="../images/fpv-drone/final-build.jpg" alt="Fully assembled and flight-ready drone">
+      <img src="../images/fpv-drone/final-build.jpg" alt="Fully assembled and flight-ready drone" loading="lazy">
       <figcaption>Fully assembled, flight-ready: the redesigned frame, native O4 mounting, and flight-tested joint geometry all present in the final build.</figcaption>
     </figure>
   </section>
@@ -359,7 +367,8 @@
 <footer class="site-footer">
   <div class="wrap">
     &copy; <span id="year"></span> Taras Prabhu &middot;
-    <a href="mailto:tarasprabhu2007@gmail.com">tarasprabhu2007@gmail.com</a>
+    <a href="mailto:tarasprabhu2007@gmail.com">tarasprabhu2007@gmail.com</a> &middot;
+    <a href="https://www.linkedin.com/in/tarasprabhu" target="_blank" rel="noopener">LinkedIn</a>
   </div>
 </footer>
 
